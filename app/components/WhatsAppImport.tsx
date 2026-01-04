@@ -198,7 +198,7 @@ export default function WhatsAppImport() {
             {result.success ? "ייבוא הושלם!" : "שגיאה בייבוא"}
           </h3>
           <ul className="text-sm space-y-1">
-            <li>סה"כ הודעות: {result.total}</li>
+            <li>סה&quot;כ הודעות: {result.total}</li>
             <li className="text-green-600 dark:text-green-400">
               מתכונים שנוספו: {result.parsed}
             </li>
