@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Recipe {
+  id                      String   @id @default(cuid())
+  title                   String
+  description             String?
+  ingredients             String   // JSON array stored as string
+  instructions            String   // JSON array stored as string
+  sourceType              String   // "text" | "website" | "instagram"
+  originalLink            String?
+  whatsappMessageId       String?  @unique
+  whatsappMessageTimestamp DateTime?
+  images                  String   // JSON array stored as string
+  parsedContent           String?  // JSON object stored as string
+  createdAt               DateTime @default(now())
+  lastSyncedAt            DateTime @default(now())
+  
+  @@index([sourceType])
+  @@index([whatsappMessageId])
+  @@index([createdAt])
+}
